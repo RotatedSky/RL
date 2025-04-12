@@ -78,3 +78,20 @@ class GridWorld:
                     print(f"[{state}, Wall:{V[state]}, pi:{pi[state]}]")
                 else:
                     print(f"[{state}, {V[state]}, pi:{pi[state]}]")
+
+    def render_q(self, Q, pi):
+        for h in range(self.height):
+            for w in range(self.width):
+                state = (h, w)
+                if state == self.goal_state:
+                    for action in self.action_space:
+                        print(f"{state}, Goal:{self.action_meaning[action]}:{Q[(state, action)]}")
+                    print(f"Goal:{pi[(state)]}")
+                elif state == self.wall_state:
+                    for action in self.action_space:
+                        print(f"{state}, Wall:{self.action_meaning[action]}:{Q[(state, action)]}")
+                    print(f"Wall:{pi[(state)]}")
+                else:
+                    for action in self.action_space:
+                        print(f"{state}, {self.action_meaning[action]}:{Q[(state, action)]}")
+                    print(f"{pi[(state)]}")
